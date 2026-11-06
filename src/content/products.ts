@@ -4,8 +4,10 @@ import { links } from './site';
 export type Product = {
   id: 'dashfixe' | 'noxa-save';
   name: string;
-  /** The letter on the app icon. */
+  /** The letter on the app icon, used until the product has a logo. */
   initial: string;
+  /** The product's own logo files in public/images (mark = the square icon, wordmark = the name). */
+  logo?: { mark: string; wordmark?: string };
   status: string;
   /** One line on the homepage card. */
   short: string;
@@ -25,6 +27,7 @@ export const products: Product[] = [
     id: 'dashfixe',
     name: 'Dashfixe',
     initial: 'D',
+    logo: { mark: '/images/dashfixe-mark.png', wordmark: '/images/dashfixe-wordmark.png' },
     status: 'Portugal · Pre-launch',
     short: 'Somebody good, close by. Agree the price before anyone travels.',
     screenLine: 'Free near you right now',

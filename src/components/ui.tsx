@@ -3,6 +3,7 @@ import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { founder } from '@/content/site';
 import { formatDate, storyHref, type Story } from '@/content/news';
+import type { Product } from '@/content/products';
 
 export function Container({ children, className = '', id, reveal }: { children: ReactNode; className?: string; id?: string; reveal?: boolean }) {
   return (
@@ -38,6 +39,30 @@ export function Button({ href, children, variant = 'dark', className = '' }: But
   const cls = `inline-flex min-h-[52px] items-center justify-center gap-2 rounded-full px-6 font-bold transition ${VARIANT[variant]} ${className}`;
   if (href.startsWith('/')) return <Link href={href} className={cls}>{children}</Link>;
   return <a href={href} className={cls}>{children}</a>;
+}
+
+/**
+ * A product's app icon: its real logo on a white tile when it has one,
+ * otherwise its initial on its brand colour. Decorative: the name always sits beside it
+ * (or the wrapper carries it), so screen readers don't hear it twice.
+ */
+export function ProductIcon({ product, size = 40, className = '' }: { product: Product; size?: number; className?: string }) {
+  const radius = Math.round(size * 0.28);
+  if (product.logo)
+    return (
+      <span aria-hidden="true" className={`inline-flex flex-none items-center justify-center bg-white ${className}`} style={{ width: size, height: size, borderRadius: radius }}>
+        <Image src={product.logo.mark} alt="" width={Math.round(size * 0.78)} height={Math.round(size * 0.78)} />
+      </span>
+    );
+  return (
+    <span
+      aria-hidden="true"
+      className={`inline-flex flex-none items-center justify-center font-extrabold text-white ${className}`}
+      style={{ width: size, height: size, borderRadius: radius, background: product.color.bg, fontSize: Math.round(size * 0.42) }}
+    >
+      {product.initial}
+    </span>
+  );
 }
 
 export function Check({ bg }: { bg: string }) {

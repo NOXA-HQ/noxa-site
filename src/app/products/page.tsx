@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { Container } from '@/components/ui';
+import { Container, ProductIcon } from '@/components/ui';
 import { mailto } from '@/content/site';
 import { products, type Product } from '@/content/products';
 
@@ -54,7 +54,10 @@ export default function Products() {
                 <span className="self-start rounded-full bg-white px-3 py-1.5 text-[13px] font-bold" style={{ color: p.color.deep }}>
                   World {String(i + 1).padStart(2, '0')} · {p.status}
                 </span>
-                <h2 className="text-[clamp(48px,6vw,80px)] leading-[0.98] font-extrabold tracking-[-0.045em]">{p.name}</h2>
+                <div className="flex items-center gap-5">
+                  <ProductIcon product={p} size={72} className="shadow-[0_8px_24px_rgba(0,0,0,0.2)]" />
+                  <h2 className="text-[clamp(48px,6vw,80px)] leading-[0.98] font-extrabold tracking-[-0.045em]">{p.name}</h2>
+                </div>
                 <p className="text-[21px] leading-[1.5]" style={{ color: p.color.soft }}>{p.tagline}</p>
                 <ul className="grid gap-4 sm:grid-cols-3">
                   {WORLD_TILES[p.id].map(([t, b], j) => (

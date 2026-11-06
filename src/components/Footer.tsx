@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { NoxaLogo } from './NoxaMark';
 import { company, links } from '@/content/site';
 import { products } from '@/content/products';
+import { ProductIcon } from './ui';
 
 export function Footer() {
   return (
@@ -15,7 +16,8 @@ export function Footer() {
           <div className="flex flex-col gap-2.5">
             <strong className="font-bold">Products</strong>
             {products.map((p) => (
-              <Link key={p.id} href={`/products#${p.id}`} className="text-muted hover:text-ink">
+              <Link key={p.id} href={`/products#${p.id}`} className="flex items-center gap-2 text-muted hover:text-ink">
+                <ProductIcon product={p} size={20} className="ring-1 ring-line" />
                 {p.name}
               </Link>
             ))}
