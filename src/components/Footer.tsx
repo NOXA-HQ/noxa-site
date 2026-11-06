@@ -39,7 +39,11 @@ export function Footer() {
         </div>
         <div className="flex flex-wrap justify-between gap-4 border-t border-line-strong pt-6 text-sm text-muted">
           <span>© {new Date().getFullYear()} {company.legalName}</span>
-          <span>{company.location}</span>
+          <span className="flex flex-wrap gap-x-6 gap-y-2">
+            <Link href="/privacy" className="hover:text-ink">Privacy</Link>
+            <Link href="/terms" className="hover:text-ink">Terms</Link>
+            <span>{company.location}</span>
+          </span>
         </div>
       </div>
     </footer>
