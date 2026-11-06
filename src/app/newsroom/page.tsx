@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Container, StoryCard } from '@/components/ui';
+import { Container, ProductIcon, StoryCard } from '@/components/ui';
 import { StoryFilter } from '@/components/StoryFilter';
 import { founder, mailto } from '@/content/site';
 import { products } from '@/content/products';
@@ -75,7 +75,7 @@ export default function Newsroom() {
           <span className="text-[13px] font-bold tracking-[0.08em] text-muted">THE NOXA FAMILY</span>
           {products.map((p) => (
             <Link key={p.id} href={`/products#${p.id}`} className="flex items-center gap-3 text-lg font-bold text-ink hover:text-indigo">
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl font-extrabold text-white" style={{ background: p.color.bg }}>{p.initial}</span>
+              <ProductIcon product={p} size={40} className="ring-1 ring-line" />
               {p.name}
               {!p.live && <span className="text-[13px] font-semibold text-muted">Coming soon</span>}
             </Link>

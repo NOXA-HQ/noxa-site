@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Button, Container, FounderAvatar, Icon, SectionTitle, StoryCard } from '@/components/ui';
+import { Button, Container, FounderAvatar, Icon, ProductIcon, SectionTitle, StoryCard } from '@/components/ui';
 import { NoxaMark } from '@/components/NoxaMark';
 import { company, founder, heroVideo, links, mailto, promises, steps } from '@/content/site';
 import { products } from '@/content/products';
@@ -47,7 +47,10 @@ export default function Home() {
               <span className="self-start rounded-full bg-white px-3 py-1.5 text-[13px] font-semibold" style={{ color: p.color.deep }}>
                 {p.status}
               </span>
-              <h3 className="text-[40px] font-extrabold tracking-[-0.03em]">{p.name}</h3>
+              <div className="flex items-center gap-4">
+                <ProductIcon product={p} size={56} className="shadow-[0_6px_20px_rgba(0,0,0,0.18)]" />
+                <h3 className="text-[40px] font-extrabold tracking-[-0.03em]">{p.name}</h3>
+              </div>
               <p className="max-w-[440px] text-lg leading-[1.5]" style={{ color: p.color.soft }}>{p.short}</p>
               <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
                 <a
@@ -90,8 +93,8 @@ export default function Home() {
         <div data-reveal="1" className="flex min-w-0 flex-[1_1_440px] flex-col items-center gap-7 rounded-[32px] bg-ink px-10 py-14">
           <div className="flex flex-wrap justify-center gap-4">
             {products.map((p, i) => (
-              <span key={p.id} data-reveal={i + 1} className="inline-flex h-[72px] w-[72px] items-center justify-center rounded-[20px] text-3xl font-extrabold text-white" style={{ background: p.color.bg }}>
-                {p.initial}
+              <span key={p.id} data-reveal={i + 1} className="inline-flex" role="img" aria-label={p.name}>
+                <ProductIcon product={p} size={72} />
               </span>
             ))}
             <span data-reveal="3" className="inline-flex h-[72px] w-[72px] items-center justify-center rounded-[20px] border-[1.5px] border-dashed border-[#5A6688] text-3xl text-[#AEB6C8]" aria-label="More to come">+</span>
@@ -221,7 +224,12 @@ function MiniScreen({ product }: { product: 'dashfixe' | 'noxa-save' }) {
   const p = products.find((x) => x.id === product)!;
   return (
     <div className="flex h-[220px] w-[220px] flex-col gap-2.5 rounded-t-[32px] bg-white p-5 text-ink transition-[translate] duration-500 ease-out group-hover:-translate-y-2" aria-hidden="true">
-      <span className="font-extrabold" style={{ color: p.color.bg }}>{p.name}</span>
+      {p.logo?.wordmark ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={p.logo.wordmark} alt="" className="block h-[22px] w-auto self-start" />
+      ) : (
+        <span className="font-extrabold" style={{ color: p.color.bg }}>{p.name}</span>
+      )}
       <span className="text-[13px] font-semibold">{p.screenLine}</span>
       <div className="flex-1 rounded-[14px]" style={{ background: p.color.tint }} />
     </div>
