@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Button, Container, FounderAvatar, Icon, ProductIcon, SectionTitle, StoryCard } from '@/components/ui';
 import { NoxaMark } from '@/components/NoxaMark';
 import { company, founder, heroVideo, links, mailto, promises, steps } from '@/content/site';
-import { products } from '@/content/products';
+import { products, type Product } from '@/content/products';
 import { stories } from '@/content/news';
 
 /** Home (design C1): mission hero, the family, one signature, safety, how we build, newsroom, people. */
@@ -35,7 +35,7 @@ export default function Home() {
           <SectionTitle className="max-w-[720px]">And the products that bring it home.</SectionTitle>
           <Link href="/products" className="font-semibold text-indigo hover:text-indigo-deep">See all products <span aria-hidden="true" className="arrow">→</span></Link>
         </div>
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {products.map((p, i) => (
             <article
               key={p.id}
@@ -213,14 +213,18 @@ function HeroMedia() {
           <circle cx="550" cy="80" r="34" fill="#0F7A5C" fillOpacity="0.15" className="breathe" style={{ animationDelay: '3.2s' }} />
         </g>
         <circle cx="550" cy="80" r="14" fill="#0F7A5C" className="pop" style={{ animationDelay: '1.85s' }} />
-        <circle cx="640" cy="40" r="9" fill="none" stroke="#0E1530" strokeOpacity="0.45" strokeWidth="2" className="pop" style={{ animationDelay: '2.3s' }} />
+        {/* Aptrune, the next star in the family. */}
+        <g className="pop" style={{ animationDelay: '2.3s' }}>
+          <circle cx="640" cy="40" r="26" fill="#7E22CE" fillOpacity="0.14" className="breathe" style={{ animationDelay: '4.4s' }} />
+        </g>
+        <circle cx="640" cy="40" r="10" fill="#7E22CE" className="pop" style={{ animationDelay: '2.3s' }} />
       </svg>
     </div>
   );
 }
 
 /** A small drawn app screen peeking up from the bottom of each product card. */
-function MiniScreen({ product }: { product: 'dashfixe' | 'noxa-save' }) {
+function MiniScreen({ product }: { product: Product['id'] }) {
   const p = products.find((x) => x.id === product)!;
   return (
     <div className="flex h-[220px] w-[220px] flex-col gap-2.5 rounded-t-[32px] bg-white p-5 text-ink transition-[translate] duration-500 ease-out group-hover:-translate-y-2" aria-hidden="true">

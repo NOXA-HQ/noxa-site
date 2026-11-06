@@ -2,7 +2,7 @@ import { links } from './site';
 
 /** The Noxa family. Add a product here and it shows on the homepage and in the footer. */
 export type Product = {
-  id: 'dashfixe' | 'noxa-save';
+  id: 'dashfixe' | 'noxa-save' | 'aptrune';
   name: string;
   /** The letter on the app icon, used until the product has a logo. */
   initial: string;
@@ -57,6 +57,23 @@ export const products: Product[] = [
     ],
     color: { bg: '#0F7A5C', deep: '#0B5E47', soft: '#DDF5EC', tint: '#D3EEE4' },
     primary: { label: 'Get notified', href: `mailto:${links.email}?subject=${encodeURIComponent('Noxa Save waitlist')}` },
+    live: false,
+  },
+  {
+    id: 'aptrune',
+    name: 'Aptrune',
+    initial: 'A',
+    status: 'Coming soon',
+    short: 'See how well you match a job before you apply — and what to sharpen first.',
+    screenLine: 'Your match for this role',
+    tagline: 'Your job-match profile helper. Build one honest profile, see how well it fits each role, and know what to sharpen before you apply.',
+    points: [
+      'One profile from your experience and skills',
+      'A clear match for each role, with the gaps named',
+      'What to sharpen next, before you apply',
+    ],
+    color: { bg: '#7E22CE', deep: '#6B21A8', soft: '#F1E4FF', tint: '#EDDDFB' },
+    primary: { label: 'Get notified', href: `mailto:${links.email}?subject=${encodeURIComponent('Aptrune waitlist')}` },
     live: false,
   },
 ];

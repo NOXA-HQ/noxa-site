@@ -16,6 +16,11 @@ const WORLD_TILES: Record<Product['id'], [string, string][]> = {
     ['Any phone', 'App, USSD or SMS'],
     ['Airtime funding', 'No bank account needed'],
   ],
+  aptrune: [
+    ['One profile', 'Your experience and skills in one place'],
+    ['Match per role', 'See how well you fit, and why'],
+    ['Know the gaps', 'What to sharpen before you apply'],
+  ],
 };
 
 const PROMISE: [string, string][] = [
@@ -26,7 +31,7 @@ const PROMISE: [string, string][] = [
 
 export const metadata: Metadata = {
   title: 'Our products',
-  description: 'Dashfixe, Noxa Save and what comes next: the Noxa family of products.',
+  description: 'Dashfixe, Noxa Save, Aptrune and what comes next: the Noxa family of products.',
 };
 
 /** Products (design C4): each product gets a full-colour world of its own, then the promise they share. */
@@ -112,6 +117,30 @@ function Phone({ product }: { product: Product }) {
       {product.id === 'dashfixe' ? (
         <div className={`${frame} relative border-[#0B1B3F] bg-white`}>
           <Image src="/images/dashfixe-mobile.jpg" alt="The Dashfixe app home: Somebody good, close by" fill sizes="290px" className="object-cover object-top" />
+        </div>
+      ) : product.id === 'aptrune' ? (
+        <div className={`${frame} flex flex-col gap-3.5 border-[#3B0D63] bg-[#FAF6FE] px-5 py-8 text-ink`}>
+          <span className="text-lg font-extrabold" style={{ color: product.color.bg }}>Aptrune</span>
+          <span className="text-lg font-bold">Junior frontend developer</span>
+          <div className="flex items-center gap-4 rounded-2xl bg-white p-4">
+            <span className="relative inline-flex h-16 w-16 flex-none items-center justify-center rounded-full text-lg font-extrabold" style={{ background: `conic-gradient(${product.color.bg} 0 78%, #EAE3F2 78% 100%)`, color: product.color.deep }}>
+              <span className="absolute inset-[6px] rounded-full bg-white" />
+              <span className="relative">78%</span>
+            </span>
+            <span className="text-sm leading-[1.4] font-semibold text-muted">Strong match. Two gaps to close.</span>
+          </div>
+          <div className="flex flex-col gap-2 rounded-2xl bg-white p-4 text-[13px] font-semibold">
+            {[['React, TypeScript', true], ['Team projects', true], ['Testing', false], ['Portuguese (B1)', false]].map(([skill, ok]) => (
+              <span key={String(skill)} className="flex items-center justify-between">
+                {skill}
+                <span className={ok ? '' : 'text-muted'} style={ok ? { color: product.color.bg } : undefined}>{ok ? '✓ Match' : 'To sharpen'}</span>
+              </span>
+            ))}
+          </div>
+          <div className="flex flex-1 flex-col justify-end gap-2.5">
+            <span className="flex h-12 items-center justify-center rounded-[14px] text-[15px] font-bold text-white" style={{ background: product.color.bg }}>See what to sharpen</span>
+            <span className="text-center text-[11px] font-semibold text-muted">Design preview</span>
+          </div>
         </div>
       ) : (
         <div className={`${frame} flex flex-col gap-3.5 border-[#08372B] bg-[#F5FBF8] px-5 py-8 text-ink`}>

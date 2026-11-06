@@ -43,7 +43,7 @@ export const founder = {
 /** C2's homepage letter, one string per paragraph. Rewrite it in your own words. */
 export const founderLetter = [
   "Noxa exists to build the everyday software people are missing. Not the next trend — the plain, reliable tools that work elsewhere but haven't reached the places we live.",
-  'Our first product, Dashfixe, helps people in Seixal and Amora find a trusted artisan and agree the price before anyone travels. Our second, Noxa Save, will bring the ajo savings groups millions of Nigerians already trust onto any phone, safely.',
+  'Our first product, Dashfixe, helps people in Seixal and Amora find a trusted artisan and agree the price before anyone travels. Our second, Noxa Save, will bring the ajo savings groups millions of Nigerians already trust onto any phone, safely. And Aptrune will help people see how well they fit a job before they apply, and what to sharpen first.',
   'Each product keeps its own name. Noxa is the promise behind them: verified people, fair prices, honest records. We launch small, prove it works, and only then grow.',
 ];
 

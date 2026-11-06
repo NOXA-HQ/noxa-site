@@ -118,7 +118,7 @@ export const terms: LegalDoc = {
     {
       title: 'Content and trademarks',
       body: [
-        'The text, design, logos and images on this site belong to Noxa or are used with permission. “Noxa”, “NoxaSoftwares”, “Dashfixe”, “Noxa Save” and their logos are our names and marks.',
+        'The text, design, logos and images on this site belong to Noxa or are used with permission. “Noxa”, “NoxaSoftwares”, “Dashfixe”, “Noxa Save”, “Aptrune” and their logos are our names and marks.',
         'You may read, share links to, and quote short parts of this site with credit. Please don’t copy the site, reuse our logos, or present yourself as Noxa or as working with us without our written permission.',
       ],
     },
