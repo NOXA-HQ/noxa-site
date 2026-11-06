@@ -47,6 +47,7 @@ All the motion styles live at the bottom of `src/app/globals.css`.
 | Hero video | `src/content/site.ts` → `heroVideo` (put the file in `public/video/` and set `'/video/noxa-story.mp4'`; until then the constellation drawing shows) |
 | Products (cards, colours, buttons, footer) | `src/content/products.ts` |
 | A product's logo | put the files in `public/images/` and set `logo: { mark, wordmark }` on the product in `src/content/products.ts` — it then replaces the letter icon everywhere (cards, signature, newsroom, products, footer) |
+| Privacy notice and terms (`/privacy`, `/terms`) | `src/content/legal.ts` — written for what the site does today (no cookies, no analytics, no forms). Update it if you add any of those, and set `controller` to the company's legal name and NIPC once Noxa is registered |
 | Newsroom stories | `src/content/news.ts` — a story with `body` gets its own page; a story with `href` links straight out |
 
 ## Still to do
