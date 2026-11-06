@@ -1,0 +1,114 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans Variable', ui-sans-serif, system-ui, sans-serif;
+  --color-ink: #0e1530;
+  --color-muted: #475069;
+  --color-line: #e6e9f0;
+  --color-line-strong: #d5dae4;
+  --color-soft: #f2f4f8;
+  --color-indigo: #3730c4;
+  --color-indigo-deep: #251f9a;
+  --color-indigo-tint: #eef0fb;
+  --color-gold: #e8a93a;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #ffffff;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-indigo);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* The phone menu is a <details>; hide its default marker. */
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* ───────────────────────── Motion ─────────────────────────
+   One calm curve, short distances, each thing moves once.
+   Everything is switched off for people who ask their device to reduce motion. */
+:root {
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* Page openers: the hero settles in on load. */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+.rise { animation: rise 0.8s var(--ease-out) both; }
+.rise-1 { animation-delay: 0.08s; }
+.rise-2 { animation-delay: 0.16s; }
+.rise-3 { animation-delay: 0.3s; }
+
+/* Scroll reveals. Hidden only once JavaScript is running (the .js class), so nothing is lost without it. */
+/* The stagger delay (--d) applies to the reveal only, so hover effects on the same element stay instant. */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s var(--ease-out) var(--d, 0s),
+    transform 0.7s var(--ease-out) var(--d, 0s),
+    translate 0.35s var(--ease-out),
+    box-shadow 0.35s var(--ease-out);
+}
+.js [data-reveal].is-visible { opacity: 1; transform: none; }
+[data-reveal='1'] { --d: 0.07s; }
+[data-reveal='2'] { --d: 0.14s; }
+[data-reveal='3'] { --d: 0.21s; }
+
+/* The hero constellation: the N draws itself once, the stars appear, the halos breathe slowly. */
+@keyframes draw { to { stroke-dashoffset: 0; } }
+.draw { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1.8s var(--ease-out) 0.35s both; }
+@keyframes pop {
+  from { opacity: 0; transform: scale(0.4); }
+  to { opacity: 1; transform: scale(1); }
+}
+.pop { transform-box: fill-box; transform-origin: center; animation: pop 0.6s var(--ease-out) both; }
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.18); opacity: 1; }
+}
+.breathe { transform-box: fill-box; transform-origin: center; animation: breathe 6s ease-in-out 2.2s infinite; }
+@keyframes twinkle {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+.twinkle { animation: twinkle 5s ease-in-out infinite; }
+
+/* Hover: cards lift a little, arrows step forward. */
+.lift { transition: translate 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out); }
+.lift:hover { translate: 0 -4px; box-shadow: 0 22px 44px -26px rgba(14, 21, 48, 0.35); }
+.arrow { display: inline-block; transition: translate 0.25s var(--ease-out); }
+a:hover .arrow { translate: 3px 0; }
+
+/* The header turns translucent with a soft edge once the page scrolls. */
+.site-header { transition: background-color 0.3s, box-shadow 0.3s, border-color 0.3s; }
+html[data-scrolled='1'] .site-header {
+  background-color: rgb(255 255 255 / 0.86);
+  backdrop-filter: saturate(1.4) blur(14px);
+  -webkit-backdrop-filter: saturate(1.4) blur(14px);
+  border-color: var(--color-line);
+  box-shadow: 0 8px 24px -18px rgba(14, 21, 48, 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .js [data-reveal] { opacity: 1; transform: none; }
+  .draw { stroke-dashoffset: 0; }
+  html { scroll-behavior: auto; }
+}
